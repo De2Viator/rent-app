@@ -1,15 +1,15 @@
 import { renderBlock } from './lib.js';
 import {DateTime} from '../node_modules/luxon/build/es6/luxon.js';
 
-export function renderSearchFormBlock (): void {
-  const minDate = DateTime.now().minus({days:1}).toSQLDate();
-  const maxDate = DateTime.now().plus({months:1, days: 30 - new Date().getDate()}).toSQLDate();
-  const checkInDate = DateTime.now().plus({days:1}).toSQLDate();
-  const checkOutDate = DateTime.now().plus({days:3}).toSQLDate();
+export function renderSearchFormBlock (dateStart?: Date, dateFinish?:Date): void {
+  const minDate: string = DateTime.now().minus({days:1}).toSQLDate();
+  const maxDate: string = DateTime.now().plus({months:1, days: 30 - new Date().getDate()}).toSQLDate();
+  const checkInDate: string = DateTime.now().plus({days:1}).toSQLDate();
+  const checkOutDate : string= DateTime.now().plus({days:3}).toSQLDate();
   renderBlock(
     'search-form-block',
     `
-    <form>
+    <form id='search-form-data'>
       <fieldset class="search-filedset">
         <div class="row">
           <div>
