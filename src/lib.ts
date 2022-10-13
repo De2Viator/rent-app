@@ -1,5 +1,6 @@
-import { Action } from "./types/action"
-import { Message } from "./types/message"
+import { Action } from "./shared/types/action"
+import { Message } from "./shared/types/message"
+
 
 export function renderBlock (elementId: string, html:string) {
   const element: HTMLDivElement = document.getElementById(elementId) as HTMLDivElement
