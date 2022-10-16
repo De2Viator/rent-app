@@ -1,4 +1,4 @@
-import { User } from "../types/user";
+import { User } from "../types/user.js";
 
 type GetUserData = () => User;
 export const getUserData: GetUserData = () => {

@@ -2,8 +2,8 @@ import { Action } from "./shared/types/action"
 import { Message } from "./shared/types/message"
 
 
-export function renderBlock (elementId: string, html:string) {
-  const element: HTMLDivElement = document.getElementById(elementId) as HTMLDivElement
+export function renderBlock (elementId: string, html:string): void {
+  const element: HTMLDivElement = document.getElementById(elementId) as HTMLDivElement;
   element.innerHTML = html
 }
 
