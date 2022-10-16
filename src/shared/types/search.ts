@@ -1,6 +1,6 @@
 export interface SearchFormData {
     city: string;
-    checkIn: string;
-    checkOut: string;
-    price: number;
+    checkIn: Date;
+    checkOut: Date;
+    price?: number;
 }

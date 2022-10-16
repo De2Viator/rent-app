@@ -160,6 +160,7 @@ ul.results-list {
     display: flex;
     flex-direction: row;
     align-items: stretch;
+    margin-bottom: 20px;
 }
 .result-img-container {
     position: relative;
@@ -174,7 +175,7 @@ ul.results-list {
     width: 20px;
     height: 20px;
     position: absolute;
-    left: 4px;
+    right: 4px;
     top: 4px;
     background-image: url(../img/heart.png);
     background-repeat: no-repeat;
@@ -221,9 +222,9 @@ p.price {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-/*    position: absolute;
+   position: absolute;
     width: 100%;
-    bottom: 0;*/
+    bottom: 0;
 }
 .result-info--footer p {
     margin: 0;
