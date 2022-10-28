@@ -6,5 +6,8 @@ export interface Place {
     name: string
     price: number
     remoteness: number
+    provider?: Provider
 } 
+
+export type Provider = 'homy'|'flat-rent'
   

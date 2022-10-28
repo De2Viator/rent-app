@@ -220,11 +220,14 @@ p.price {
 }
 .result-info--footer {
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-   position: absolute;
+    justify-content: space-between;
     width: 100%;
+    align-items: flex-end;
+    position: absolute;
     bottom: 0;
+}
+.book {
+    padding: 10px 42px;
 }
 .result-info--footer p {
     margin: 0;

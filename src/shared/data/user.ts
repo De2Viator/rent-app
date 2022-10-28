@@ -1,7 +1,6 @@
 import { User } from "../types/user.js";
 
-type GetUserData = () => User;
-export const getUserData: GetUserData = () => {
+export const getUserData = (): User => {
     const user = {
         avatarUrl: localStorage.getItem('avatarUrl'),
         userName: localStorage.getItem('userName')

@@ -17,10 +17,10 @@ export function renderSearchFormBlock (dateStart?: Date, dateFinish?:Date): void
             <input id="city" type="text" disabled value="Санкт-Петербург" />
             <input type="hidden" disabled value="59.9386,30.3141" />
           </div>
-          <!--<div class="providers">
+          <div class="providers">
             <label><input type="checkbox" name="provider" value="homy" checked /> Homy</label>
             <label><input type="checkbox" name="provider" value="flat-rent" checked /> FlatRent</label>
-          </div>--!>
+          </div>
         </div>
         <div class="row">
           <div>
@@ -35,9 +35,9 @@ export function renderSearchFormBlock (dateStart?: Date, dateFinish?:Date): void
             <label for="max-price">Макс. цена суток</label>
             <input id="max-price" type="text" value="" name="price" class="max-price" />
           </div>
-          <div>
-            <div><button>Найти</button></div>
+          <div>  <div><button>Найти</button></div>
           </div>
+          
         </div>
       </fieldset>
     </form>

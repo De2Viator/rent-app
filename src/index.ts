@@ -6,6 +6,7 @@ import { getUserData } from './shared/data/user.js'
 import { getFavourites } from './favourite.js'
 import { prepareSearching } from './search.js'
 import { prepareFavourite } from "./favourite.js"
+import { prepareBooking } from './book.js'
 
 window.addEventListener('DOMContentLoaded', () => {
   const user = getUserData();
@@ -15,6 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
   renderSearchStubBlock()
   prepareSearching();
   prepareFavourite();
+  prepareBooking();
   renderToast(
       {text: 'Это пример уведомления. Используйте его при необходимости', type: 'success'},
       {name: 'Понял', handler: () => {console.log('Уведомление закрыто')}}
