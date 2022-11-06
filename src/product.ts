@@ -2,13 +2,17 @@ import { getFavourites } from "./favourite.js"
 import { renderBlock } from "./lib.js";
 import { searchTimeout } from "./search.js";
 import { search } from "./shared/data/products.js";
+import { Filters } from "./shared/types/filters.js";
 import { Place } from "./shared/types/place"
 
-export const getPlaces = async (city: string, checkIn: Date, checkOut: Date,price: number,providers:string[]): Promise<void> => {
+export const getPlaces = async (city: string, checkIn: Date, checkOut: Date,price: number,filter: Filters,providers:string[]): Promise<void> => {
     if(searchTimeout) clearTimeout(searchTimeout);
     let result = '';
-    const places = await search({ city, checkIn, checkOut, price, providers})
+    let places = await search({ city, checkIn, checkOut, price, providers})
     if(!(places  instanceof Error)) {
+        if(filter === 'cheap') places = places.sort((firstPlace,secondPlace) => firstPlace.price - secondPlace.price)
+        if(filter === 'expensive') places = places.sort((firstPlace,secondPlace) => secondPlace.price - firstPlace.price)
+        if(filter === 'close') places = places.sort((firstPlace, secondPlace) => firstPlace.remoteness - secondPlace.remoteness)
         for(const place of places ) {
             result+=renderPlace(place);
         } 

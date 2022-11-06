@@ -46,7 +46,7 @@ export function addDays(date, days) {
     return date
 }
 
-export const backendPort = 3040
+export const backendPort = 3030
 export const localStorageKey = 'flat-rent-db'
 
 export class FlatRentSdk {

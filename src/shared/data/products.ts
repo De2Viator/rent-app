@@ -1,27 +1,30 @@
-import { FlatRentSdk } from "../flat-sdk/flat-rent-sdk.js";
+import { renderToast } from "../../lib.js";
+import { Flat, FlatRentSdk } from "../flat-sdk/flat-rent-sdk.js";
 import { Place, Provider } from "../types/place.js";
 import { SearchFormData } from "../types/search.js";
 
+
+
 export const search = async (searchData:SearchFormData, callback?:(results:Error|Place[]) => void): Promise<Error | Place[]> => {
-    let places:Place[] = []
+    const places:Place[] = []
+
+    const pushPlaces = (result: Flat[] | Place[], provider: Provider) => {
+        result.forEach(res => {
+            res.provider = provider
+            places.push(res as Place)
+        })
+    }
+
     if(searchData.providers.some(provider => provider === 'homy')) {
         const result: Place[] =  await fetch(`http://localhost:3030/places?coordinates=59.9386,30.3141&checkInDate=${searchData.checkIn.getTime()}&checkOutDate=${searchData.checkOut.getTime()}${searchData.price ? `&maxPrice=${searchData.price}` :''}`)
         .then(result => result.json());
-        result.forEach(result => {
-            result.provider = 'homy';
-            places.push(result)
-        })
+        pushPlaces(result, 'homy')
     }
     if(searchData.providers.some(provider => provider === 'flat-rent')) {
         const result = await new FlatRentSdk().search({city: searchData.city, checkInDate: searchData.checkIn, 
         checkOutDate: searchData.checkOut, priceLimit: searchData.price});
 
-        if(!(result instanceof Error)) {
-            result.forEach(res => {
-                res.provider = 'homy'
-                places.push(res as Place)
-            })
-        }
+        if(!(result instanceof Error)) pushPlaces(result, 'flat-rent')
     }
     if(callback) callback(places);
     return places;
@@ -37,5 +40,6 @@ export const book = async (flatId: string, checkInDate: Date, checkOutDate: Date
     if(provider === 'flat-rent') {
         result =  await new FlatRentSdk().book(flatId, checkInDate, checkOutDate);
     }
+    renderToast({text: 'Бронирование завершено', type: 'success'})
     return result;
 }

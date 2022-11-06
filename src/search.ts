@@ -1,5 +1,6 @@
 import { renderToast } from "./lib.js";
 import { getPlaces } from "./product.js";
+import { Filters } from "./shared/types/filters.js";
 export let searchTimeout: any;
 export const prepareSearching = (): void => {
     const searchForm: HTMLFormElement = document.querySelector('#search-form-data') as HTMLFormElement;
@@ -7,15 +8,15 @@ export const prepareSearching = (): void => {
     const checkInElement = searchForm.querySelector('#check-in-date') as HTMLInputElement;
     const cityEl: HTMLInputElement = searchForm.querySelector('#city') as HTMLInputElement;
     const maxPriceElement = searchForm.querySelector('#max-price') as HTMLInputElement;
+    const filterElement:HTMLSelectElement = searchForm.querySelector('#filter') as HTMLSelectElement;
     const providersEl = searchForm.querySelectorAll('input[name=\'provider\']') as unknown as HTMLInputElement[];
-
     const restartSearching = (): void => {
         if(searchTimeout) clearTimeout(searchTimeout)
         const providers:string[] = Array.from(providersEl).filter(provider => provider.checked).map(provider => provider.value);
         searchTimeout = setTimeout(() => 
         renderToast({text: 'Данные устарели, обновите поиск', type: 'success'},
         {name: 'Обновить', handler: () => getPlaces(cityEl.value, new Date(checkInElement.value), 
-        new Date(checkOutElement.value), +maxPriceElement.value, providers)}),300000)
+        new Date(checkOutElement.value), +maxPriceElement.value, filterElement.value as Filters,providers)}),300000)
     }
 
     checkOutElement.addEventListener('change',() => restartSearching());
@@ -24,6 +25,6 @@ export const prepareSearching = (): void => {
     searchForm.onsubmit = (e:Event) => {
         e.preventDefault();
         const providers:string[] = Array.from(providersEl).filter(provider => provider.checked).map(provider => provider.value);
-        getPlaces(cityEl.value, new Date(checkInElement.value), new Date(checkOutElement.value), +maxPriceElement.value, providers)
+        getPlaces(cityEl.value, new Date(checkInElement.value), new Date(checkOutElement.value), +maxPriceElement.value, filterElement.value as Filters, providers)
     }
 }
