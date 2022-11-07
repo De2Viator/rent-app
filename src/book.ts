@@ -9,7 +9,7 @@ export const prepareBooking = ():void => {
         const checkInEl = document.getElementById('check-in-date') as HTMLInputElement;
         if(buttonEl.classList.contains('book')) {
             const infoEl = ((buttonEl.offsetParent as HTMLDivElement).offsetParent as HTMLDivElement).dataset;
-            book(infoEl.id as string, new Date(checkInEl.value), new Date(checkOutEl.value), infoEl.provider as Provider)
+            book(infoEl['id'] as string, new Date(checkInEl.value), new Date(checkOutEl.value), infoEl['provider'] as Provider)
         }
     })
 }

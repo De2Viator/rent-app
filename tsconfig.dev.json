@@ -1,5 +1,5 @@
 {
     "extends": "./tsconfig.json",
-    "noUnusedLocals": true,                           /* Enable error reporting when local variables aren't read. */
-    "noUnusedParameters": true, 
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
 }

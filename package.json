@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "rimraf build && tsc",
-    "start": "tsc --watch -p tsconfig.json",
+    "start": "tsc --watch",
     "start:dev": "tsc --watch -p tsconfig.dev.json"
   },
   "type": "module",
